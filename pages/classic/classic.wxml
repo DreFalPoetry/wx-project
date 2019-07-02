@@ -1,0 +1,6 @@
+<!--pages/classic/classic.wxml-->
+<view class='container'>
+  <view class='thunk color1'>1</view>
+  <view class='thunk color2'>2</view>
+  <view class='thunk color3'>3</view>
+</view>
