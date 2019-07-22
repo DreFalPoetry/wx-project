@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/classic/classic",
+    "pages/index/index",
     "pages/logs/logs"
   ],
   "window": {
