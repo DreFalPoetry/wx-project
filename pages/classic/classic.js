@@ -1,5 +1,7 @@
 import { ClassicModel } from '../../modules/classic.js'
-let classic = new ClassicModel();
+import { LikeModel } from '../../modules/like.js'
+let classicModel = new ClassicModel();
+let likeModel = new LikeModel();
 Page({
 
   /**
@@ -13,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    classic.getLatest((res)=>{
+    classicModel.getLatest((res)=>{
       this.setData({
         classicData:res
       })
@@ -67,5 +69,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onLike:function(event){
+    let behavior = event.detail.behavior;
+    likeModel.like(behavior,this.data.classicData.id,this.data.classicData.type)
   }
 })
