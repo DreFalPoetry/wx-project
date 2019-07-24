@@ -1,1 +1,2 @@
-<v-like />
+<v-like like="{{classicData.like_status}}" count="{{classicData.fav_nums}}"/>
+<v-moive img="{{classicData.image}}" content="{{classicData.content}}" />
