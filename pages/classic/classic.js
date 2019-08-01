@@ -9,6 +9,8 @@ Page({
    */
   data: {
     classicData:{},
+    latest:true,
+    first:false
   },
 
   /**
