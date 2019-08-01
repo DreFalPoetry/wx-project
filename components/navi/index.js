@@ -23,6 +23,16 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onLeft:function(){
+      if(!this.properties.latest){
+        this.triggerEvent('left',{},{})
 
+      }
+    },
+    onRight:function(){
+      if(!this.properties.first){
+        this.triggerEvent('right', {}, {})
+      }
+    }
   }
 })
