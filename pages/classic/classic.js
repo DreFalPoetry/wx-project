@@ -26,7 +26,7 @@ Page({
 
   onNext:function(){
     let index = this.data.classicData.index;
-    classicModel.getPrevious(index,(res)=>{
+    classicModel.getClassic(index,'next',(res)=>{
       this.setData({
         classicData:res,
         latest:classicModel.isLatest(res.index),
@@ -37,7 +37,7 @@ Page({
 
   onPrevious:function(event){
     let index = this.data.classicData.index;
-    classicModel.getPrevious(index, (res) => {
+    classicModel.getClassic(index,'previous', (res) => {
       this.setData({
         classicData: res,
         latest: classicModel.isLatest(res.index),
