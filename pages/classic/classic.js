@@ -25,11 +25,25 @@ Page({
   },
 
   onNext:function(){
-    
+    let index = this.data.classicData.index;
+    classicModel.getPrevious(index,(res)=>{
+      this.setData({
+        classicData:res,
+        latest:classicModel.isLatest(res.index),
+        first:classicModel.isFirst(res.index)
+      })
+    })
   },
 
-  onPrevious:function(){
-
+  onPrevious:function(event){
+    let index = this.data.classicData.index;
+    classicModel.getPrevious(index, (res) => {
+      this.setData({
+        classicData: res,
+        latest: classicModel.isLatest(res.index),
+        first: classicModel.isFirst(res.index)
+      })
+    })
   },
 
   /**
