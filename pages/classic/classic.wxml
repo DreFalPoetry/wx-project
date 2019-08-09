@@ -9,7 +9,14 @@
     content="{{classicData.content}}" 
   />
   <v-music 
-    wx:if="{{classicData.type == 200}}"
+    wx:if="{{classicData.type == 200 && classicData.show == 1}}"
+    img="{{classicData.image}}" 
+    content="{{classicData.content}}" 
+    src="{{classicData.url}}"
+    title="{{classicData.title}}"
+  />
+  <v-music 
+    wx:if="{{classicData.type == 200 && classicData.show == 2}}"
     img="{{classicData.image}}" 
     content="{{classicData.content}}" 
     src="{{classicData.url}}"
