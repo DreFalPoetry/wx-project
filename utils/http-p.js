@@ -36,7 +36,6 @@ class HTTP{
 
   _show_error(error_code){
     const tip = tip[error_code]
-    console.log(tip)
     wx.showToast({
       title: tip || tips[1],
       icon: 'none',
