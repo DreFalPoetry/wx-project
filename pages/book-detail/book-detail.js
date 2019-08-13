@@ -12,7 +12,8 @@ Page({
     comments:[],
     book:null,
     likeStatus:false,
-    likeCount:0
+    likeCount:0,
+    posting:false
   },
 
   /**
@@ -49,6 +50,48 @@ Page({
   onLike(event){
     const like_or_cancel = event.detail.behavior;
     likeModel.like(like_or_cancel,this.data.book.id,400)
+  },
+
+  onFakePost(event){
+    this.setData({
+      posting:true
+    })
+  },
+
+  onCancel(event){
+    this.setData({
+      posting:false
+    })
+  },
+
+  onPost(event){
+    const comment = event.detail.text || event.detail.value;
+    if(!comment){
+      return;
+    }
+    if(comment.length > 12){
+      wx.showToast({
+        title: '短评最多12字',
+        icon:'none'
+      })
+      return
+    }
+
+    bookModel.postComment(this.data.book.id,comment).then((res)=>{
+      console.log(res)
+      wx.showToast({
+        title: '+1',
+        icon:'none'
+      })
+      this.data.comments.unshift({
+        content:comment,
+        nums:1
+      })
+      this.setData({
+        comments:this.data.comments,
+        posting:false
+      })
+    })
   },
 
   /**
