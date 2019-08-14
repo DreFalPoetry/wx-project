@@ -104,3 +104,23 @@
   margin-right: 10px;
   margin-bottom: 10px;
 }
+
+.books-container {
+  width: 570rpx;
+  margin-top:100rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 90rpx 0 90rpx;
+  justify-content: space-between;
+}
+
+.loading {
+  margin: 50rpx 0 50rpx 0;
+}
+
+.loading-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}

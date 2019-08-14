@@ -26,7 +26,8 @@ Component({
     hotWords:[],
     searching:false,
     q:'',
-    loading:false
+    loading:false,
+    loadingCenter:false
   },
 
   attached(){
@@ -57,20 +58,24 @@ Component({
         bookModel.search(this.getCurrentStart(), this.data.q).then((res) => {
           this.setMoreData(res.books)
           this._unLocked()
+        },()=>{
+          this._unLocked()
         })
       }
     },
 
  
     onCancel(event){
+      this.initialize()
       this.triggerEvent('cancel',{},{})
     },
     onDelete(event) {
+      this.initialize()
       this._closeResult()
     },
     onConfirm(event){
       this._showResult()
-      this.initialize()
+      this._showLoadingCenter()
       const q = event.detail.value || event.detail.text;
       bookModel.search(0,q).then((res)=>{
         this.setMoreData(res.books)
@@ -79,6 +84,19 @@ Component({
           q
         })
          keywordModel.addToHistory(q)
+         this._hideLoadingCenter()
+      })
+    },
+
+    _showLoadingCenter(){
+      this.setData({
+        loadingCenter:true
+      })
+    },
+
+    _hideLoadingCenter(){
+      this.setData({
+        loadingCenter: false
       })
     },
 
@@ -89,18 +107,23 @@ Component({
     },
     _closeResult(){
       this.setData({
-        searching: false
+        searching: false,
+        q:''
       })
     },
     _isLocked() {
-      return this.data.loading ? true : false
+      return this.data.loading
     },
 
     _locked() {
-      this.data.loading = true;
+      this.setData({
+        loading:true
+      })
     },
     _unLocked() {
-      this.data.loading = false
+      this.setData({
+        loading: false
+      })
     },
   }
 })
