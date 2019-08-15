@@ -30,7 +30,7 @@
  <view class="like-container">
   <image class="headline" src="/images/my/like.png"></image>
   <view class="preview-container">
-    <block wx:for="{{classics}}">
+    <block wx:for="{{classics}}" wx:key="{{item.id}}">
       <v-preview class="preview" classic="{{item}}"/>
     </block>
   </view>
