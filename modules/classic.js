@@ -21,6 +21,15 @@ class ClassicModel extends HTTP{
     })
   }
 
+  getMyFavor(sCallback){
+    this.request({
+      url:'/classic/favor',
+      success:(res)=>{
+        sCallback(res)
+      }
+    })
+  }
+
   getClassic(index,nextOrPrevious,sCallback){
     //缓存中寻找 or API 写入到缓存中
     //确定key

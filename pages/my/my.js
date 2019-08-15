@@ -1,4 +1,10 @@
 // pages/my/my.js
+import { ClassicModel } from '../../modules/classic.js'
+import { BookModel } from '../../modules/book.js'
+
+const classicModel = new ClassicModel();
+const bookModel = new BookModel()
+
 Page({
 
   /**
@@ -6,7 +12,9 @@ Page({
    */
   data: {
     authorized:false,
-    userInfo:{}
+    userInfo:{},
+    bookCount:0,
+    classics:null
   },
 
   bindGetUserInfo(event){
@@ -42,13 +50,44 @@ Page({
     })
   },
 
+  onJumpToAbout(event){
+    wx.navigateTo({
+      url: '/pages/about/about',
+    })
+  },
+
+  onStudy(event){
+    wx.navigateTo({
+      url: '/pages/course/course',
+    })
+  },
+
+  getMyFavor(){
+    classicModel.getMyFavor(res=>{
+      this.setData({
+        classics:res
+      })
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.userAuthorized()
+    this.getMyBookCount()
+    this.getMyFavor()
   },
 
+
+  getMyBookCount(){
+    bookModel.getMyBookCount()
+      .then((res)=>{
+        this.setData({
+          bookCount:res.count
+        })
+      })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
